@@ -1,11 +1,14 @@
-const Header = () => {
+import { useState } from "react"
+
+const Header = ({ dark, handleDarkTheme }) => {
+
     return (
         <header>
             <div>
                 <p>C</p>
-                <h1>Character Counter UTN</h1>
+                <h1>Contador de Caracteres UTN</h1>
             </div>
-            <button>☀</button>
+            <button onClick={() => handleDarkTheme(!dark)}>☀</button>
         </header>
     )
 }
