@@ -254,14 +254,14 @@ textarea {
   color: var(--secundary-text);
   width: 30px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .stat {
   color: var(--secundary-text);
   width: 95px;
   font-size: 13px;
-  font-weight: 250;
+  font-weight: 450;
   text-align: right;
 }
 
@@ -274,13 +274,11 @@ progress {
 
 /* Reglas para Chrome, Edge y Safari */
 progress::-webkit-progress-bar {
-  /* el fondo vacio por donde avanza la barra */
-  background-color: var(--card-background);
+  background-color: var(--border);
   border-radius: 5px;
 }
 
 progress::-webkit-progress-value {
-  /* el nivel de progreso de la barra */
   background-color: var(--progress-bar);
   border-radius: 5px;
 }

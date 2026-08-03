@@ -52,7 +52,6 @@ const App = () => {
   const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length
   const sentences = text.trim() === "" ? 0 : text.split(/[.!?]/).filter(sentence => sentence.trim() !== "").length
   const readingTime = Math.ceil(words / 200)
-
   const cleanText = text.toLowerCase().replace(/[^a-záéíóúñü]/g, "")
   const total = cleanText.length
   const dictionaryLetters = {}
@@ -78,6 +77,7 @@ const App = () => {
 
   return (
     <main className="card">
+
       <Header
         lightTheme={lightTheme}
         handleTheme={handleTheme}
