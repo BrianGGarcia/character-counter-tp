@@ -14,14 +14,16 @@ const App = () => {
   const [limitCharacter, setLimitCharacter] = useState(false)
   const [limitValue, setLimitValue] = useState(300)
 
-  const { dark, handleDarkTheme } = useContext(ThemeContext)
+  const { lightTheme, handleTheme } = useContext(ThemeContext)
 
   const handleExcludeSpaces = () => {
     setExcludeSpaces(!excludeSpaces)
   }
 
-  const handleLimitValue = () => {
-    setLimitValue(!limitValue)
+  const handleLimitValue = (value) => {
+    const newLimit = Number(value)
+
+    setLimitValue(newLimit > 0 ? newLimit : 1)
   }
 
   const handleChangeTextArea = (e) => {
@@ -37,9 +39,13 @@ const App = () => {
   }
 
   const handleChangeInputLimit = () => {
-    setLimitCharacter(!limitCharacter)
-    const newText = text.slice(0, limitValue)
-    setText(newText)
+    const newLimitState = !limitCharacter
+
+    setLimitCharacter(newLimitState)
+
+    if (newLimitState) {
+      setText((currentText) => currentText.slice(0, limitValue))
+    }
   }
 
   const character = excludeSpaces ? text.replace(/\s/g, "").length : text.length
@@ -71,8 +77,11 @@ const App = () => {
   const sortLetters = letters.sort((a, b) => b.amount - a.amount)
 
   return (
-    <main className={` card ${dark ? "dark-theme" : ""}`} >
-      <Header dark={dark} handleDarkTheme={handleDarkTheme} />
+    <main className="card">
+      <Header
+        lightTheme={lightTheme}
+        handleTheme={handleTheme}
+      />
 
       <section className="hero">
         <h2>Analiza tu texto <br />

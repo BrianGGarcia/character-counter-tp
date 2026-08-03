@@ -1,22 +1,35 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 
 const ThemeContext = createContext()
 
 const ThemeProvider = ({ children }) => {
-    const [dark, setDark] = useState(JSON.parse(localStorage.getItem("theme")) === "dark" ? true : false)
+    const [lightTheme, setLightTheme] = useState(() => {
+        return localStorage.getItem("theme") === "light"
+    })
 
-    const handleDarkTheme = () => {
-        setDark(!dark)
+    useEffect(() => {
+        document.documentElement.classList.toggle(
+            "light-theme",
+            lightTheme
+        )
 
-        if (!dark) {
-            localStorage.setItem("theme", JSON.stringify("dark"))
-        } else {
-            localStorage.removeItem("theme")
-        }
+        localStorage.setItem(
+            "theme",
+            lightTheme ? "light" : "dark"
+        )
+    }, [lightTheme])
+
+    const handleTheme = () => {
+        setLightTheme((currentTheme) => !currentTheme)
     }
 
     return (
-        <ThemeContext.Provider value={{ dark, handleDarkTheme }}>
+        <ThemeContext.Provider
+            value={{
+                lightTheme,
+                handleTheme
+            }}
+        >
             {children}
         </ThemeContext.Provider>
     )

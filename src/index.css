@@ -5,19 +5,43 @@
 }
 
 :root {
-  --main-background: #12131A;
-  --card-background: #1C1F2A;
-  --card-background-light-theme: #f1f2f7;
-  --main-text: #F2F2F7;
-  --main-text-ligth-theme: #1d1e29;
-  --secundary-text: #B4B7C9;
-  --progress-bar: #D19BFF;
-  --border: #2A2D3A;
-  --main-font: 'Inter', sans-serif;
+  color-scheme: dark;
+
+  --body-background: #1c1f2a;
+  --main-background: #12131a;
+  --card-background: #1c1f2a;
+
+  --main-text: #f2f2f7;
+  --secundary-text: #b4b7c9;
+
+  --progress-bar: #d19bff;
+  --border: #2a2d3a;
+  --metric-text: #12131a;
+
+  --card-shadow: 11px 10px 19px -5px rgba(0, 0, 0, 0.75);
+
+  --main-font: "Inter", sans-serif;
+}
+
+:root.light-theme {
+  color-scheme: light;
+
+  --body-background: #e7e8ef;
+  --main-background: #ffffff;
+  --card-background: #f1f2f7;
+
+  --main-text: #1d1e29;
+  --secundary-text: #55586a;
+
+  --progress-bar: #a66bd5;
+  --border: #d4d6df;
+  --metric-text: #12131a;
+
+  --card-shadow: 0 15px 40px rgba(35, 37, 50, 0.16);
 }
 
 body {
-  background-color: var(--card-background);
+  background-color: var(--body-background);
   color: var(--main-text);
   font-family: var(--main-font);
   min-height: 100vh;
@@ -31,11 +55,11 @@ body {
   background-color: var(--main-background);
   width: 100%;
   max-width: 1000px;
-  min-width: 800px;
+  min-width: 0;
   border-radius: 25px;
   border: 1px solid var(--border);
   overflow: hidden;
-  box-shadow: 11px 10px 19px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: var(--card-shadow);
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -78,6 +102,22 @@ img {
   transform: scale(1.10);
 }
 
+:root.light-theme .theme-button {
+  background-color: #eadcf8;
+  border: 1px solid #d4b7ee;
+  box-shadow: 0 2px 6px rgba(93, 55, 130, 0.12);
+}
+
+:root.light-theme .theme-button img {
+  filter: brightness(0) saturate(100%);
+  opacity: 0.75;
+}
+
+:root.light-theme .theme-button:hover {
+  background-color: #dcc4f2;
+  transform: scale(1.10);
+}
+
 .hero {
   text-align: center;
   margin-bottom: 5px;
@@ -106,11 +146,30 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 14px;
   margin-bottom: 6px;
   color: var(--secundary-text);
   font-size: 13px;
   flex-wrap: wrap;
+}
+
+.checkboxes input[type="number"] {
+  width: 75px;
+  padding: 5px 7px;
+  background-color: var(--card-background);
+  color: var(--main-text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--main-font);
+}
+
+.checkboxes input[type="number"]:focus {
+  outline: 2px solid var(--progress-bar);
+  outline-offset: 1px;
+}
+
+.checkboxes input[type="checkbox"] {
+  accent-color: var(--progress-bar);
 }
 
 .checkboxes {
@@ -156,7 +215,7 @@ textarea {
   flex: 1 1 200px;
   padding: 15px;
   border-radius: 16px;
-  color: var(--main-background);
+  color: var(--metric-text);
 }
 
 .number {
@@ -238,8 +297,118 @@ progress::-webkit-progress-value {
   color: var(--main-text);
 }
 
-/* theme */
-main.dark-theme {
-  background-color: var(--card-background-light-theme);
-  color: var(--main-text-ligth-theme);
+body,
+.card,
+textarea,
+.theme-button,
+.checkboxes input[type="number"],
+progress,
+progress::-webkit-progress-bar {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 20px 16px;
+    border-radius: 16px;
+    box-shadow: none;
+  }
+
+  header {
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo h1 {
+    font-size: 16px;
+  }
+
+  .logo img {
+    height: 34px;
+  }
+
+  .theme-button {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  .theme-button img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hero h2 {
+    font-size: clamp(32px, 10vw, 42px);
+    line-height: 1.12;
+    margin: 28px 0 32px;
+  }
+
+  textarea {
+    height: 240px;
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .checkboxes {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .reading-time {
+    align-self: flex-end;
+  }
+
+  .metrics {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .metrics div {
+    width: 100%;
+    flex: none;
+  }
+
+  .number {
+    font-size: 42px;
+  }
+
+  .density-item {
+    gap: 8px;
+  }
+
+  .letter {
+    width: 24px;
+    flex-shrink: 0;
+  }
+
+  progress {
+    min-width: 0;
+  }
+
+  .stat {
+    width: 82px;
+    flex-shrink: 0;
+  }
 }

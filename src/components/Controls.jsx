@@ -24,6 +24,8 @@ const Controls = ({ excludeSpaces, handleExcludeSpaces, limitCharacter, handleCh
                     limitCharacter &&
                     <input
                         type="number"
+                        min="1"
+                        step="1"
                         value={limitValue}
                         onChange={(e) => handleLimitValue(e.target.value)}
                     />
