@@ -94,7 +94,7 @@ img {
   border-radius: 10px;
   width: 40px;
   height: 100%;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .theme-button:hover {
@@ -115,7 +115,6 @@ img {
 
 :root.light-theme .theme-button:hover {
   background-color: #dcc4f2;
-  transform: scale(1.10);
 }
 
 .hero {
@@ -186,11 +185,10 @@ textarea {
 
 .metrics {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   margin-top: 20px;
   margin-bottom: 25px;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
 
 .total-characters {
@@ -216,6 +214,11 @@ textarea {
   padding: 15px;
   border-radius: 16px;
   color: var(--metric-text);
+  transition: transform 0.18s ease;
+}
+
+.metrics div:hover {
+  transform: scale(1.030);
 }
 
 .number {
@@ -237,10 +240,8 @@ textarea {
   margin-bottom: 20px;
 }
 
-.density-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.density-list ul {
+  list-style: none;
 }
 
 .density-item {
@@ -284,21 +285,23 @@ progress::-webkit-progress-value {
 }
 
 .see-more {
-  color: var(--secundary-text);
+  width: fit-content;
   margin-bottom: 10px;
+  color: var(--secundary-text);
   font-size: 16px;
   cursor: pointer;
-  justify-content: left;
+  transform-origin: left center;
+  transition: transform 0.18s ease, color 0.18s ease;
 }
 
 .see-more:hover {
   color: var(--main-text);
+  transform: scale(1.03);
 }
 
 body,
 .card,
 textarea,
-.theme-button,
 .checkboxes input[type="number"],
 progress,
 progress::-webkit-progress-bar {
