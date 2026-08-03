@@ -4,12 +4,242 @@
   box-sizing: border-box;
 }
 
-main {
-  padding: 20px;
-  height: 100vh;
+:root {
+  --main-background: #12131A;
+  --card-background: #1C1F2A;
+  --card-background-light-theme: #f1f2f7;
+  --main-text: #F2F2F7;
+  --main-text-ligth-theme: #1d1e29;
+  --secundary-text: #B4B7C9;
+  --progress-bar: #D19BFF;
+  --border: #2A2D3A;
+  --main-font: 'Inter', sans-serif;
 }
 
+body {
+  background-color: var(--card-background);
+  color: var(--main-text);
+  font-family: var(--main-font);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.card {
+  background-color: var(--main-background);
+  width: 100%;
+  max-width: 1000px;
+  min-width: 800px;
+  border-radius: 25px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 11px 10px 19px -5px rgba(0, 0, 0, 0.75);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 10px;
+  gap: 10px;
+}
+
+img {
+  height: 40px;
+  object-fit: contain;
+}
+
+.theme-button {
+  background-color: var(--card-background);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 40px;
+  height: 100%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.theme-button:hover {
+  background-color: var(--secundary-text);
+  transform: scale(1.10);
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.hero h2 {
+  font-size: 52px;
+  margin: 25px 100px 40px;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  height: 250px;
+  background-color: var(--card-background);
+  color: var(--secundary-text);
+  border: 1px solid var(--border);
+  padding: 16px;
+  font-family: var(--main-font);
+  font-size: 16px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  color: var(--secundary-text);
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.checkboxes {
+  display: flex;
+  gap: 25px;
+}
+
+.checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.metrics {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.total-characters {
+  background-image: url(./assets/card-1.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.word-count {
+  background-image: url(./assets/card-2.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.sentence-count {
+  background-image: url(./assets/card-3.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.metrics div {
+  flex: 1 1 200px;
+  padding: 15px;
+  border-radius: 16px;
+  color: var(--main-background);
+}
+
+.number {
+  font-size: 50px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 450;
+  margin-bottom: 15px;
+}
+
+.letter-density h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.density-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.density-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.letter {
+  color: var(--secundary-text);
+  width: 30px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.stat {
+  color: var(--secundary-text);
+  width: 95px;
+  font-size: 13px;
+  font-weight: 250;
+  text-align: right;
+}
+
+progress {
+  flex-grow: 1;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--card-background);
+}
+
+/* Reglas para Chrome, Edge y Safari */
+progress::-webkit-progress-bar {
+  /* el fondo vacio por donde avanza la barra */
+  background-color: var(--card-background);
+  border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+  /* el nivel de progreso de la barra */
+  background-color: var(--progress-bar);
+  border-radius: 5px;
+}
+
+.see-more {
+  color: var(--secundary-text);
+  margin-bottom: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  justify-content: left;
+}
+
+.see-more:hover {
+  color: var(--main-text);
+}
+
+/* theme */
 main.dark-theme {
-  background-color: rgb(37, 36, 36);
-  color: white;
+  background-color: var(--card-background-light-theme);
+  color: var(--main-text-ligth-theme);
 }

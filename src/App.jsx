@@ -71,16 +71,18 @@ const App = () => {
   const sortLetters = letters.sort((a, b) => b.amount - a.amount)
 
   return (
-    <main className={`${dark ? "dark-theme" : ""}`}>
+    <main className={` card ${dark ? "dark-theme" : ""}`} >
       <Header dark={dark} handleDarkTheme={handleDarkTheme} />
 
-      <h2>Analiza tu texto <br />
-        en tiempo real.</h2>
+      <section className="hero">
+        <h2>Analiza tu texto <br />
+          en tiempo real.</h2>
 
-      <WriteArea
-        handleChangeTextArea={handleChangeTextArea}
-        text={text}
-      />
+        <WriteArea
+          handleChangeTextArea={handleChangeTextArea}
+          text={text}
+        />
+      </section>
 
       <Controls
         excludeSpaces={excludeSpaces}
@@ -89,13 +91,13 @@ const App = () => {
         handleChangeInputLimit={handleChangeInputLimit}
         limitValue={limitValue}
         handleLimitValue={handleLimitValue}
+        readingTime={readingTime}
       />
 
       <Stats
         character={character}
         words={words}
         sentences={sentences}
-        readingTime={readingTime}
       />
 
       {
